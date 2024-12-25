@@ -1,0 +1,582 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+body {
+    margin: 0;
+    font-family: poppins;
+    background-color: #D0F7F4;
+}
+
+.navbar {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    background: #D0F7F4;
+    z-index: 1;
+    font-family: poppins;
+    padding:1rem;
+    position: relative;
+    width: 100%;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    transition: transform 0.3s ease-in-out;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-links li {
+    margin: 0 1rem;
+}
+
+.nav-links a {
+    color: #005D6C;
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 1.2rem;
+}
+
+/* Styling the hamburger menu */
+.menu-toggle {
+    display: none;
+    cursor: pointer;
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    z-index: 2;
+}
+
+.hamburger {
+    width: 35px; /* Adjust the width of the hamburger menu lines */
+    height: 3px;
+    background-color: #005D6C;
+    border-radius: 3px;
+    position: relative;
+    transition: 0.3s ease-in-out;
+}
+
+.hamburger::before,
+.hamburger::after {
+    content: '';
+    position: absolute;
+    height: 3px;
+    width: 35px; /* Adjust the width to match the hamburger line */
+    background-color: #005D6C;
+    border-radius: 3px;
+    transition: 0.3s ease-in-out;
+}
+
+.hamburger::before {
+    top: -8px; /* Adjust space between lines */
+}
+
+.hamburger::after {
+    top: 8px; /* Adjust space between lines */
+}
+
+/* Transform hamburger into a cross when clicked */
+.menu-toggle.open .hamburger {
+    background-color: transparent;
+}
+
+.menu-toggle.open .hamburger::before {
+    transform: rotate(45deg);
+    top: 0;
+    background-color: #ffffff;
+}
+
+.menu-toggle.open .hamburger::after {
+    transform: rotate(-45deg);
+    top: 0;
+    background-color: #ffffff;
+}
+
+/* Responsive styles for smaller screens */
+@media (max-width: 768px) {
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: 0;
+        height: 100vh;
+        width: 250px;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: #7fccd7;
+        transform: translateX(100%);
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .nav-links li {
+        margin: 1.5rem 0;
+    }
+
+    .menu-toggle {
+        display: flex;
+    }
+
+    .close-menu {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        font-size: 2rem;
+        cursor: pointer;
+        color: #ffffff;
+    }
+
+    .nav-links.open {
+        transform: translateX(0);
+    }
+}
+
+#first-part {
+    display: flex;
+    flex-wrap: wrap;
+    height: auto;
+    width: auto;
+    /* justify-content: flex-start;
+    align-items: flex-start; */
+    column-gap: 55px;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+
+.greeting {
+    background-color: #005D6C;
+    color: white;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    width: 700px;
+    align-items: center;
+    margin: 50px;
+}
+
+.greeting img {
+    width: 300px;
+}
+
+.greeting h1 {
+    font-size: 30px;
+    margin-bottom: 10px;
+    color: #ffffff;
+}
+.displayname
+{
+    color: #ffffff;
+}
+
+.notification {
+    width: 700px;
+    height: auto;
+    margin: 60px;
+    background-color: #D0F7F4;
+    border: 2px solid #005D6C;
+    padding: 25px;
+    line-height: 30px;
+    border-radius: 20px;
+
+}
+
+
+
+
+.notification h2 {
+    color: #005D6C;
+
+}
+
+.notifications h2 {
+    margin-bottom: 15px;
+    font-size: 20px;
+    color: #2B2B2B;
+}
+
+.notifications ul {
+    list-style-type: disc;
+    padding-left: 20px;
+}
+
+.notifications ul li {
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: #6C757D;
+}
+
+.sidebar .calendar {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.sidebar .calendar h2 {
+    margin-bottom: 15px;
+    font-size: 20px;
+    color: #2B2B2B;
+}
+
+.sidebar .calendar table {
+    width: 100%;
+    text-align: center;
+}
+
+.sidebar .calendar th,
+.sidebar .calendar td {
+    padding: 10px;
+    font-size: 14px;
+    color: #6C757D;
+}
+
+.sidebar .upcoming-events {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.sidebar .upcoming-events h2 {
+    margin-bottom: 15px;
+    font-size: 20px;
+    color: #2B2B2B;
+}
+
+.sidebar .upcoming-events p {
+    font-size: 14px;
+    color: #6C757D;
+    text-align: center;
+}
+
+
+
+
+
+
+
+/* ---------------------------*/
+.second-part {
+    display: flex;
+    flex-wrap: wrap;
+    height: auto;
+    width: auto;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 60px;
+
+
+}
+
+.upcoming-events {
+    width: 500px;
+    height: 400px;
+    background-color: #6C757D;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px auto;
+
+}
+
+
+
+
+/* second page----events */
+
+.event-form
+{
+    display: grid;
+    justify-content: flex-start;
+    width: auto;
+    height: auto;
+    color: #005D6C;
+   
+}
+
+#event-form-details
+{
+    backdrop-filter: blur(10px);
+}
+
+.button-container
+{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 10px;
+}
+
+.button-container button
+{
+    display:flex;
+    width: 200px;
+    height: 50px;
+    border-radius: 4px ;
+    border: 1px solid white;
+    font-family: poppins;
+    align-items: center;
+    justify-content: center;
+    column-gap: 10px;
+    font-size: 19px;
+    font-weight: 600;
+    cursor: pointer;
+    color: rgb(0, 0, 0);
+
+}
+
+.highlightable {
+    padding: 10px 20px;
+    font-size: 16px;
+    margin: 10px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    background:#ffffff;
+    transition: background-color 0.3s, border-color 0.3s;
+    height: 50px;
+    width: 300px;
+    color: #ffffff;
+}
+
+.highlighted {
+    background:linear-gradient(#005D6C,#4ECCA3);
+    color: rgb(0, 0, 0);
+
+}
+
+.circle1
+{
+  
+    background-color: #05FF00;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+   
+}
+
+.circle2
+{
+    background-color: #FF0000;;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+
+
+
+form {
+   
+   display: grid;
+    margin: auto;
+    padding: 20px auto;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+    color: #005D6C;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    
+
+}
+
+
+form input[type="text"],
+form input[type="email"],
+form input[type="tel"],
+form input[type="date"],
+form select,
+form textarea {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background-color: transparent;
+    border-bottom: 1px solid #176368;
+    color: #005D6C;
+    font-size: 16px;
+}
+
+
+form input[type="submit"] {
+
+    width: 100%;
+    background:linear-gradient(#005D6C,#4ECCA3);
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border-radius: 6px;
+    border:none;
+    cursor: pointer;
+    font-size: 19px;
+} 
+/* ----------------- */
+
+.buttons-conainer{
+    text-align: center;
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+}
+
+#review{
+    display: flex;
+    padding: 10px 20px;
+    font-size: 16px;
+    margin: 10px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    background-color: #f0f0f0;
+    transition: background-color 0.3s, border-color 0.3s;
+    height: 50px;
+    width: 300px;
+    align-items: center;
+    justify-content: center;
+}
+#next1{
+    display: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    margin: 10px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    background-color: #f0f0f0;
+    transition: background-color 0.3s, border-color 0.3s;
+    height: 50px;
+    width: 300px;
+    margin-left: 0px;
+    align-items: center;
+    justify-content: center;
+
+}
+
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+    form {
+        padding: 15px;
+    }
+
+    form h1 {
+        font-size: 24px;
+    }
+
+    form input[type="text"],
+    form input[type="email"],
+    form input[type="tel"],
+    form input[type="date"],
+    form select,
+    form textarea {
+        padding: 10px;
+    }
+
+    form input[type="submit"] {
+        padding: 12px;
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    form {
+        padding: 10px;
+    }
+
+    form h1 {
+        font-size: 20px;
+    }
+
+    form input[type="text"],
+    form input[type="email"],
+    form input[type="tel"],
+    form input[type="date"],
+    form select,
+    form textarea {
+        padding: 8px;
+    }
+
+    form input[type="submit"] {
+        padding: 10px;
+        font-size: 12px;
+    }
+}
+
+
+
+
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .greeting {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px;
+        margin: 10px;
+    }
+
+    .greeting-text {
+        margin: 0 0 20px 0;
+    }
+
+    .greeting-image img {
+        max-width: 100%;
+        margin: 0 auto;
+    }
+
+    .calendar {
+        padding: 15px;
+        width: 100vw;
+        margin: 10px auto;
+
+    }
+
+    .month .date {
+        font-size: 16px;
+    }
+
+    .days div {
+        width: calc(100% / 7 - 5px);
+        /* Slightly reduce width for very small screens */
+    }
+
+    .weekdays {
+        font-size: 12px;
+    }
+    .upcoming-events 
+    {
+        max-width: 100%;
+    }
+
+
+}
+
+@media screen and (max-width: 480px) {
+    .greeting-text h1 {
+        font-size: 20px;
+    }
+
+    .greeting-text p {
+        font-size: 14px;
+    }
+
+    .greeting-image img {
+        max-width: 100%;
+    }
+    .upcoming-events 
+    {
+        max-width: 100%;
+    }
+
+
+}

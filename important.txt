@@ -1,0 +1,49 @@
+
+<?php
+// Start session to store form data between pages
+session_start();
+
+// Capture form data from the previous page
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submitOffline'])) {
+    // Store form inputs in the session
+    $_SESSION['name'] = $_POST['name'];
+    $_SESSION['email'] = $_POST['email'];
+    $_SESSION['phone'] = $_POST['phone'];
+    $_SESSION['eventname'] = $_POST['eventname'];
+    $_SESSION['eventdescription'] = $_POST['eventdescription'];
+    $_SESSION['eventtype'] = $_POST['eventtype'];
+    $_SESSION['eventdatefrom'] = $_POST['eventdatefrom'];
+    $_SESSION['eventdateto'] = $_POST['eventdateto'];
+    $_SESSION['participants'] = $_POST['participants'];
+
+    // Handle the image upload
+    if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
+        $uploadDir = 'uploads/'; // Ensure this directory exists and is writable
+        if (!is_dir($uploadDir)) {
+            mkdir($uploadDir, 0777, true); // Create directory if it does not exist
+        }
+
+        $imageName = basename($_FILES['image']['name']);
+        $uploadFilePath = $uploadDir . $imageName;
+        $imageFileType = strtolower(pathinfo($uploadFilePath, PATHINFO_EXTENSION));
+
+        // Check if file is a valid image type
+        $allowedTypes = ['jpg', 'jpeg', 'png', 'gif'];
+        if (in_array($imageFileType, $allowedTypes)) {
+            // Move the uploaded file to the target directory
+            if (move_uploaded_file($_FILES['image']['tmp_name'], $uploadFilePath)) {
+                // Store the path of the uploaded image in the session
+                $_SESSION['image'] = $uploadFilePath;
+                header("Location: final_eventplace.php"); // Redirect to the event place entry page
+                exit;
+            } else {
+                echo "Error: Failed to move the uploaded file.";
+            }
+        } else {
+            echo "Error: Only JPG, JPEG, PNG, and GIF files are allowed.";
+        }
+    } else {
+        echo "Error: No image uploaded or there was an error in the upload process.";
+    }
+}
+?>
