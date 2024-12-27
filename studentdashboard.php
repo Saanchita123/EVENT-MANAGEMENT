@@ -1,53 +1,105 @@
+
 <!DOCTYPE html>
 <html lang="en">
     <style>
 
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 body {
-    font-family: Arial, sans-serif;
+    font-family: poppins;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f9;
 }
 
 .container {
-    width: 80%;
+  
     margin: auto;
-    overflow: hidden;
+   
 }
 
-header {
-    background: #333;
-    color: #fff;
-    padding: 10px 0;
-    display: flex;
+
+nav
+{
+    display:flex;
     justify-content: space-between;
     align-items: center;
+    background:#000000;
+    z-index: 1;
+    font-family: poppins;
+    padding: 5px;
+    color: #fff;
+  
 }
-
-header .logo {
-    margin-left: 20px;
-    font-size: 24px;
+.logo
+{
+    color: white;
+    font-size: 1.5rem;
+    margin-left: 1rem;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
 }
-
-header nav ul {
+nav ul
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 1rem;
+}
+nav ul li 
+{
     list-style: none;
-    margin: 0;
-    padding: 0;
 }
-
-header nav ul li {
-    display: inline;
-    margin-right: 20px;
-}
-
-header nav ul li a {
+nav ul li a
+{
     color: white;
     text-decoration: none;
+    padding:10px;
+    margin: 0 1rem;
+    transition: all 0.3s ease;
+}
+#background
+{
+    height: 600px;
+    /* border: 10px solid red; */
+    display: flex;
+    position: relative;
+    justify-content: center;
+}
+#background h1
+{
+    color: white;
+    font-size: 3rem;
+    text-align: center;
+    margin-top: 200px;
+    z-index: 1;
+    position: relative;
 }
 
-main {
-    margin: 20px 0;
+#background img
+{
+    width: 100%;
+    height: 100%;
+   
+    filter: brightness(50%);
+    z-index: -1;
+    position: absolute;
+   
+ 
+
 }
+#background1
+{
+   width: 100%;
+    height: 600px;
+    /* border: 10px solid red; */
+    display: flex;
+    position: absolute;
+    background: rgba(0, 0, 0, 0.5);
+    /* border: 10px solid green; */
+}
+/* main {
+    margin: 20px 0;
+} */
 
 h1 {
     text-align: center;
@@ -55,7 +107,14 @@ h1 {
 }
 
 .event-section {
-    margin-top: 20px;
+    /* margin-top: 20px; */
+    /* border: 10px solid red; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+;
 }
 
 .event-section h2 {
@@ -64,17 +123,21 @@ h1 {
 }
 
 .events {
+   
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 50px;
 }
 
 .event-card {
+    padding: 20px;
+    /* border: 10px solid blue; */
     background: white;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 30%;
-    padding: 15px;
+    box-shadow: 0px 4px 8px rgba(5, 5, 5, 0.45);
+    border: 1px solid #ddd;
+    width: 500px;
+  height:auto;
     text-align: center;
 }
 
@@ -87,7 +150,8 @@ h1 {
 
 .event-card h3 {
     color: #444;
-    margin: 10px 0;
+   text-align: center;
+
 }
 
 .event-card p {
@@ -100,18 +164,20 @@ h1 {
     background: #007BFF;
     color: white;
     border: none;
-    padding: 10px 15px;
+    padding: 10px ;
     border-radius: 5px;
     cursor: pointer;
+    margin: 20px;
 }
 .details-btn
 {
     background: #007BFF;
     color: white;
     border: none;
-    padding: 10px 15px;
+    padding: 10px ;
     border-radius: 5px;
     cursor: pointer;
+    margin: 20px;
 }
 
 .register-btn:hover {
@@ -128,17 +194,24 @@ h1 {
 
 <body>
     <div class="container">
-        <header>
-            <div class="logo">LOGO</div>
+        
+           
             <nav>
+            <div class="logo">LOGO</div>
                 <ul>
                     <li><a href="#">Home</a></li>
                     <li><a href="#">My Events</a></li>
                     <li><a href="studentprofilepage.php">profile</a></li>
                 </ul>
             </nav>
-        </header>
+    
         <main>
+            <div id="background">
+               
+                <h1>Discover the Joy of Learning</h1>
+                <div id="background1"> </div>
+                <img src="stem-list-EVgsAbL51Rk-unsplash.jpg"alt="">
+            </div>
             <h1>Annual Conference 2024</h1>
 
             <!-- Featured Events Section -->
@@ -239,8 +312,8 @@ h1 {
                 echo '<h3>' . $row["event_name"] . '</h3>';
                 echo '<p>' . $row["event_description"] . '</p>';
                 echo '<p>' . date("M d, Y", strtotime($row["event_date_from"])) . ' - ' . date("M d, Y", strtotime($row["event_date_to"])) . '</p>';
-                echo '<a href="studentregister.php?event_id=' . $row["id"] . '" class="register-btn">Register</a>';
-                echo '<a href="studenteventdetails.php?event_id=' . $row["id"] . '" class="details-btn">View Details</a>';
+                echo '<a href="onlineeventstudentregister.php?event_id=' . $row["id"] . '" class="register-btn">Register</a>';
+                echo '<a href="onlinestudenteventdetails.php?event_id=' . $row["id"] . '" class="details-btn">View Details</a>';
                 echo '</div>';
             }
         } else {
@@ -254,10 +327,20 @@ h1 {
     </div>
 
     <script>
+
         function registerEvent(eventId) {
             alert("You have registered for the event with ID: " + eventId);
             // Add AJAX or redirect to the registration page logic here
         }
+
+
+
+
+        // ------------------------------------
+
+
+   
+
     </script>
 </body>
 </html>

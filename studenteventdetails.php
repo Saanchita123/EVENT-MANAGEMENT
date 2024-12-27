@@ -1,3 +1,7 @@
+
+
+
+
 <?php
 // Connect to the database
 $conn = new mysqli("localhost", "root", "", "event-registration");
@@ -21,7 +25,9 @@ if (isset($_GET['event_id'])) {
 } else {
     die("Invalid request.");
 }
+
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -38,40 +44,50 @@ if (isset($_GET['event_id'])) {
 }
 
 .container {
-    width: 90%;
+   
     margin: auto;
 }
 
-header {
-    background-color: #333;
-    color: #fff;
-    padding: 10px 0;
-    display: flex;
+nav
+{
+    display:flex;
     justify-content: space-between;
     align-items: center;
-}
-
-header .logo {
-    margin-left: 20px;
-    font-size: 24px;
-}
-
-header nav ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-}
-
-header nav ul li {
-    margin-right: 20px;
-}
-
-header nav ul li a {
+    background:#000000;
+    z-index: 1;
+    font-family: poppins;
+    padding: 5px;
     color: #fff;
-    text-decoration: none;
+  
 }
-
+.logo
+{
+    color: white;
+    font-size: 1.5rem;
+    margin-left: 1rem;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+}
+nav ul
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 1rem;
+}
+nav ul li 
+{
+    list-style: none;
+}
+nav ul li a
+{
+    color: white;
+    text-decoration: none;
+    padding:10px;
+    margin: 0 1rem;
+    transition: all 0.3s ease;
+}
 .event-banner {
     position: relative;
     text-align: center;
@@ -225,16 +241,14 @@ details {
 </head>
 <body>
     <div class="container">
-        <header>
+    <nav>
             <div class="logo">LOGO</div>
-            <nav>
                 <ul>
                     <li><a href="#">Home</a></li>
-                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">My Events</a></li>
                     <li><a href="studentprofilepage.php">profile</a></li>
                 </ul>
             </nav>
-        </header>
 
         <main>
             <section class="event-banner">
@@ -292,6 +306,14 @@ details {
  
     <a href="register_event.php?event_id=<?php echo $event_id; ?>" class="register-btn">Register Now</a>
 </section>
+
+
+<!-- 
+
+
+
+-->
+
 
            
         </main>

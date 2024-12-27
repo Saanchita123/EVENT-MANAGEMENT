@@ -149,7 +149,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submitOffline'])) {
             padding: 0;
         }
         body {
-            font-family: Arial, sans-serif;
+            font-family: poppins;
             background: #D0F7F4;
         }
         /* nav bar --- */
@@ -376,7 +376,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submitOffline'])) {
 </head>
 <body>
 
-<nav class="navbar">
+<!-- <nav class="navbar">
         <div class="menu-toggle" id="menu-toggle">
             <div class="hamburger"></div>
         </div>
@@ -387,8 +387,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submitOffline'])) {
             <li><a href="#">Help Center</a></li>
            <li><img src="images/Group 109.png" alt="" style="width: 50px;cursor: pointer;" onclick="hello()"></l>
         </ul>
-    </nav>
+    </nav> -->
 
+
+
+    <nav class="navbar">
+        <div class="menu-toggle" id="menu-toggle">
+            <div class="hamburger"></div>
+        </div>
+        <ul class="nav-links" id="nav-links">
+            <li><a href="dashboard.php">Dashboard</a></li>
+            <li><a href="finalevent.php">Events</a></li>
+            <li><a href="collegeupdate.php">College Updates</a></li>
+            <li><a href="eventdetails.php">Help Center</a></li>
+           <li><div id="logout-button"><a href="logout.php"><img src="images/Group 109.png" alt="" style="width: 50px;cursor: pointer;" onclick=""></a></div> </li>
+           
+        </ul>
+      
+    </nav>
+    
     <!-- Event Place Form -->
     
     <form id="place" method="POST" action="submit_offline_event.php">
@@ -409,7 +426,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submitOffline'])) {
             <ul id="auditoriumNames"></ul>
         </div>
     </div>
-
+    <script src="script.js"></script>
     <script>
         let map;
         let service;

@@ -13,14 +13,16 @@ if ($conn->connect_error) {
 
 // Fetch event details
 $event_id = $_GET['event_id'];
-$sql_event = "SELECT * FROM online_events WHERE id = ?";
+$sql_event = "SELECT * FROM offline_events WHERE id = ?";
 $stmt_event = $conn->prepare($sql_event);
 $stmt_event->bind_param("i", $event_id);
 $stmt_event->execute();
 $event_result = $stmt_event->get_result();
 $event = $event_result->fetch_assoc();
+//
 
-// Fetch participants (users who registered for the event)
+//new code to het the student register
+// Prepare the SQL query
 $sql_users = "SELECT s.name, s.email, s.phone
               FROM studentregister s
               INNER JOIN event_registration_students e ON s.email = e.email
@@ -46,6 +48,7 @@ while ($user = $users_result->fetch_assoc()) {
     echo "Phone: " . $user['phone_number'] . "<br>";
     echo "Event: " . $user['eventname'] . "<br><br>";
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -170,24 +173,23 @@ while ($user = $users_result->fetch_assoc()) {
     </style>
 </head>
 <body>
-
-    <h1>Edit Event: <?php echo htmlspecialchars($event['event_name']); ?></h1>
+    <h1>Edit Event: <?php echo htmlspecialchars($event['eventname']); ?></h1>
     <form action="updateevent11.php" method="POST">
         <input type="hidden" name="event_id" value="<?php echo $event['id']; ?>">
-        <label for="event_name">Event Name:</label><br>
-        <input type="text" id="event_name" name="event_name" value="<?php echo htmlspecialchars($event['event_name']); ?>" required><br><br>
+        <label for="eventname">Event Name:</label><br>
+        <input type="text" id="eventname" name="eventname" value="<?php echo htmlspecialchars($event['eventname']); ?>" required><br><br>
         
-        <label for="event_type">Event Type:</label><br>
-        <input type="text" id="event_type" name="event_type" value="<?php echo htmlspecialchars($event['event_type']); ?>" required><br><br>
+        <label for="eventtype">Event Type:</label><br>
+        <input type="text" id="eventtype" name="eventtype" value="<?php echo htmlspecialchars($event['eventtype']); ?>" required><br><br>
         
-        <label for="event_description">Event Description:</label><br>
-        <textarea id="event_description" name="event_description" required><?php echo htmlspecialchars($event['event_description']); ?></textarea><br><br>
+        <label for="eventdescription">Event Description:</label><br>
+        <textarea id="eventdescription" name="eventdescription" required><?php echo htmlspecialchars($event['eventdescription']); ?></textarea><br><br>
         
-        <label for="event_date_from">From:</label><br>
-        <input type="date" id="event_date_from" name="event_date_from" value="<?php echo htmlspecialchars($event['event_date_from']); ?>" required><br><br>
+        <label for="eventdatefrom">From:</label><br>
+        <input type="date" id="eventdatefrom" name="eventdatefrom" value="<?php echo htmlspecialchars($event['eventdatefrom']); ?>" required><br><br>
         
-        <label for="event_date_to">To:</label><br>
-        <input type="date" id="event_date_to" name="event_date_to" value="<?php echo htmlspecialchars($event['event_date_to']); ?>" required><br><br>
+        <label for="eventdateto">To:</label><br>
+        <input type="date" id="eventdateto" name="eventdateto" value="<?php echo htmlspecialchars($event['eventdateto']); ?>" required><br><br>
         
         <label for="participants">Participants:</label><br>
         <input type="number" id="participants" name="participants" value="<?php echo htmlspecialchars($event['participants']); ?>" required><br><br>
@@ -199,7 +201,7 @@ while ($user = $users_result->fetch_assoc()) {
     <?php if ($users_result->num_rows > 0): ?>
         <ul>
             <?php while ($user = $users_result->fetch_assoc()): ?>
-                <li><?php echo htmlspecialchars($user['firstname'] . " " . $user['lastname']) . " (" . htmlspecialchars($user['email']) . ") - " . htmlspecialchars($user['phone']); ?></li>
+                <li><?php echo htmlspecialchars($user['name'] . " " . $user['lastname']) . " (" . htmlspecialchars($user['email']) . ") - " . htmlspecialchars($user['phone']); ?></li>
             <?php endwhile; ?>
         </ul>
     <?php else: ?>

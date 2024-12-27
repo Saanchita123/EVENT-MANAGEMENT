@@ -1,9 +1,9 @@
 <?php
-// Database connection details
-$host = 'localhost'; // your server
-$dbname = 'event-registration'; // replace with your database name
-$username = 'root'; // replace with your database username
-$password = ''; // replace with your database password
+
+$host = 'localhost'; 
+$dbname = 'event-registration'; 
+$username = 'root';
+$password = ''; 
 
 // Create a connection
 $conn = new mysqli($host, $username, $password, $dbname);
@@ -63,15 +63,11 @@ $resultOnline = $stmtOnline->get_result();
     <style>
         /* Basic styles for layout */
         body {
-            font-family: 'Poppins', sans-serif;
-            color: white;
-            
+            font-family:  sans-serif;
+            color:black;
             text-align: center;
         }
-        h2, h3 {
-            color: #ffdf91;
-            margin-top: 20px;
-        }
+       
         .event-container {
             display: flex;
             flex-wrap: wrap;
@@ -80,13 +76,13 @@ $resultOnline = $stmtOnline->get_result();
             margin-top: 20px;
         }
         .event-card {
-            width: 250px;
-            background-color: #1b4854;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            color: white;
-            text-align: center;
-            overflow: hidden;
+    padding: 10px;
+    width: 350px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    color: #000000;
+    text-align: center;
         }
         .event-card img {
             width: 100%;
@@ -95,26 +91,105 @@ $resultOnline = $stmtOnline->get_result();
         }
         .event-card h4 {
             padding: 10px;
-            color: #ffdf91;
+            color:rgb(0, 0, 0);
         }
         .event-card button {
-            background-color: #ffdf91;
-            color: #176368;
+            background-color:rgb(0, 89, 153);
+            color:white;
             border: none;
             padding: 10px;
-            width: 100%;
+            width: 200px;
             cursor: pointer;
+            border-radius:10px;
         }
-        .event-card button:hover {
-            background-color: #e5c278;
+        #button-to-view-student
+        {
+            margin-top: 40px;
+            width: 150px;
+            height:50px;
+            border-radius:10px;
+            border:1px solid #348FCC;
+            align-items:center;
+            background-color:#348FCC;
+            color:white;
         }
         form
         {
             box-shadow:none;
-            display: inline;
+            display:flex;
             justify-content:center;
             align-items:center;
         }
+
+        /* styling */
+
+    
+    .profile-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background-color: #f5fbff;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 15px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        margin: 10px auto;
+    }
+
+    .profile-info {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .profile-img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+    }
+
+    .profile-text h4 {
+        margin: 0;
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    .profile-text p {
+        margin: 0;
+        color: #555;
+        font-size: 14px;
+    }
+
+    .profile-stats {
+        font-size: 14px;
+        color: #777;
+    }
+
+    .profile-actions button {
+        border: none;
+        padding: 8px 15px;
+        font-size: 14px;
+        cursor: pointer;
+        border-radius: 20px;
+    }
+    table
+    {
+        margin:10px;
+        display: flex;
+    justify-content: center;
+   
+    
+}
+table td 
+{
+    gap:10px;
+}
+
+
+
+    
+</style>
+
     </style>
 </head>
 <nav class="navbar">
@@ -135,7 +210,7 @@ $resultOnline = $stmtOnline->get_result();
 <?php
 // Display events if any are found
 if ($resultOffline->num_rows > 0 || $resultOnline->num_rows > 0) {
-    echo "<h2>Events associated with phone number: $loggedInPhone</h2>";
+    echo "<p>Events associated with phone number: $loggedInPhone</p>";
     echo "<div class='event-container'>"; // Event container div starts here
 
     // Offline Events
@@ -144,7 +219,7 @@ if ($resultOffline->num_rows > 0 || $resultOnline->num_rows > 0) {
             echo "<div class='event-card'>
                     <img src='{$row['image']}' alt='Event Image'>
                     <h4>{$row['eventname']}</h4>
-                    <form action='eventdetails1.php' method='GET'>
+                    <form action='editevent2.php' method='GET'>
                         <input type='hidden' name='event_id' value='{$row['id']}'>
                         <button type='submit'>View More</button>
                     </form>
@@ -171,40 +246,40 @@ if ($resultOffline->num_rows > 0 || $resultOnline->num_rows > 0) {
 }
 ?>
 
-<form method="post">
-    <button type="submit" name="show_students">Show Registered Students</button>
-</form>
+ <form method="post">
+    <button type="submit" name="show_students" id="button-to-view-student">Show Registered Students</button>
+
+</form> 
 
 <?php
 // Display registered students if requested
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['show_students'])) {
-    $sqlStudents = "SELECT * FROM users";
+if ($_SERVER['REQUEST_METHOD'] === 'POST'&& isset($_POST['show_students']) ) {
+    $sqlStudents = "SELECT * FROM event_registration_students";
     $resultStudents = $conn->query($sqlStudents);
 
     if ($resultStudents->num_rows > 0) {
-        echo "<h3>Registered Students</h3>";
+        // echo "<p>Registered Students</p>";
         echo "<table>
-                <tr>
-                    <th>ID</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Phone</th>
-                    <th>Email</th>
-                </tr>";
+                ";
         while ($row = $resultStudents->fetch_assoc()) {
-            echo "<tr>
-                    <td>{$row['id']}</td>
-                    <td>{$row['firstname']}</td>
-                    <td>{$row['lastname']}</td>
-                    <td>{$row['phone']}</td>
-                    <td>{$row['email']}</td>
-                </tr>";
+            echo "<tr class='profile-row'>
+            <td class='profile-info'>
+            </td>
+             
+                    <td class='profile-stats'>{$row['name']}</td>
+                    <td class='profile-stats'>{$row['phone_number']}</td>
+                    <td class='profile-stats'>{$row['email']}</td>
+            </td>
+          </tr>";
+    
         }
         echo "</table>";
     } else {
         echo "<p>No registered students found.</p>";
     }
 }
+
+
 ?>
 
 <?php

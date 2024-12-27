@@ -1,4 +1,5 @@
 <?php
+
 // Connect to the database
 $conn = new mysqli("localhost", "root", "", "event-registration");
 
@@ -11,7 +12,7 @@ if (isset($_GET['event_id'])) {
     $event_id = (int)$_GET['event_id'];
 
     // Query to fetch event name
-    $sql = "SELECT eventname FROM offline_events WHERE id = $event_id";
+    $sql = "SELECT event_name FROM online_events WHERE id = $event_id";
     $result = $conn->query($sql);
 
     if ($result && $result->num_rows > 0) {
@@ -47,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Insert registration details into the database
     $sql = "INSERT INTO event_registration_students (name, email, phone_number, education_level, degree_obtained, institution_name, graduation_year, eventname, house_address, aadhaar_card_image) 
-            VALUES ('$name', '$email', '$phone', '$education_level', '$degree_obtained', '$institution_name', '$graduation_year', '" . $event['eventname'] . "', '$house_address', ?)";
+            VALUES ('$name', '$email', '$phone', '$education_level', '$degree_obtained', '$institution_name', '$graduation_year', '" . $event['event_name'] . "', '$house_address', ?)";
 
     // Prepare the statement to insert the BLOB
     if ($stmt = $conn->prepare($sql)) {
@@ -113,7 +114,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </style>
 </head>
 <body>
-    
     <div class="container">
         <h1>Register for Event</h1>
         <form method="POST" action="" enctype="multipart/form-data">

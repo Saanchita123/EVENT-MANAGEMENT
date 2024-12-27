@@ -1,3 +1,6 @@
+
+
+
 <?php
     // Database configuration
     $host = "localhost";
@@ -33,7 +36,7 @@
             exit();
         } else {
             // Invalid credentials
-            $error = "Invalid name or password";
+            echo "<script>alert('invalid password');</script>";
         }
 
         $stmt->close();
@@ -246,7 +249,7 @@ button .login-button {
         <div class="form-container">
 
             
-        <form class="login-form"  method="POST">
+        <form class="login-form"  method="POST" action="studentdashboard.php">
             <h1>Student Login</h1>
 
             <div class="input-group">
@@ -261,7 +264,7 @@ button .login-button {
                 <input type="password" id="password" name="password" required>
 
             </div>
-            <button id="login-button" type="submit" onclick="myfunction()"><a href="studentdashboard.php">login</a></button>
+            <button id="login-button" type="submit" >login</button>
             <p class="create-account-link">Don't have an account? <a href="newaccountstudent.php">Create Account</a></p>
         </form>
 

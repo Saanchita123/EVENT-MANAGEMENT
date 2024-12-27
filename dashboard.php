@@ -1,6 +1,5 @@
 <?php
 session_start(); // Start the session
-
 // Prevent caching
 header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
 header("Cache-Control: post-check=0, pre-check=0", false);
@@ -14,10 +13,6 @@ if (!isset($_SESSION['user_phone'])) {
 
 // Your protected page content goes here...
 ?>
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>

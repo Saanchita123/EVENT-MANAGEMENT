@@ -1,21 +1,4 @@
 <?php
-session_start(); // Start the session
-
-// Prevent caching
-header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
-header("Cache-Control: post-check=0, pre-check=0", false);
-header("Pragma: no-cache");
-
-// Check if user is logged in (example: check if phone number is set in session)
-if (!isset($_SESSION['user_phone'])) {
-    echo "<script>alert('Please log in to continue.'); window.location.href = 'login.html';</script>";
-    exit; // Stop script execution if user is not logged in
-}
-
-// Your protected page content goes here...
-?>
-
-<?php
 // Include database connection
 include 'connect.php'; // Ensure this contains your DB connection
 
@@ -125,6 +108,7 @@ if (isset($_POST['submitOnline'])) {
             margin: 0;
             padding: 0;
             font-family: 'Poppins', sans-serif;
+            font-family: poppins;
         }
 
         body {
@@ -427,5 +411,6 @@ if (isset($_POST['submitOnline'])) {
     <input type="submit" name="submitOffline" value="Next">
 </form>
     </div>
+    <script src="script.js"></script>
 </body>
 </html>
