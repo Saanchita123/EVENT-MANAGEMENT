@@ -162,6 +162,7 @@ while ($user = $users_result->fetch_assoc()) {
                 font-size: 0.9rem;
             }
 
+
             button {
                 font-size: 1rem;
                 padding: 10px 18px;
@@ -172,9 +173,9 @@ while ($user = $users_result->fetch_assoc()) {
 <body>
 
     <h1>Edit Event: <?php echo htmlspecialchars($event['event_name']); ?></h1>
-    <form action="updateevent11.php" method="POST">
+    <form action="updateevent11.php" method="POST" >
         <input type="hidden" name="event_id" value="<?php echo $event['id']; ?>">
-        <label for="event_name">Event Name:</label><br>
+        <label for="event_name">Event Name:</label>
         <input type="text" id="event_name" name="event_name" value="<?php echo htmlspecialchars($event['event_name']); ?>" required><br><br>
         
         <label for="event_type">Event Type:</label><br>

@@ -17,7 +17,7 @@ if (ini_get("session.use_cookies")) {
 session_destroy(); 
 
 // Redirect to login page or homepage
-echo "<script>alert('successfully logged out :'); window.location.href = 'login.html';</script>"; // Change 'login.php' to your desired location
+echo "<script>alert('successfully logged out :'); window.location.href = 'login1.html';</script>"; // Change 'login.php' to your desired location
 exit;
 ?>
 <?php
@@ -30,7 +30,7 @@ header("Pragma: no-cache");
 
 // Check if user is logged in (example: check if phone number is set in session)
 if (!isset($_SESSION['user_phone'])) {
-    echo "<script>alert('Please log in to continue.'); window.location.href = 'login.html';</script>";
+    echo "<script>alert('Please log in to continue.'); window.location.href = 'login1.html';</script>";
     exit; // Stop script execution if user is not logged in
 }
 ?>

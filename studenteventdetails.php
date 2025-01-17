@@ -36,8 +36,14 @@ if (isset($_GET['event_id'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo htmlspecialchars($event['eventname']); ?> - Details</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Quicksand:wght@300..700&family=Space+Grotesk:wght@300..700&display=swap');
+
+
         body {
-    font-family: Arial, sans-serif;
+    font-family:quicksand;
     margin: 0;
     padding: 0;
     background-color: #f9f9f9;
@@ -105,7 +111,7 @@ nav ul li a
     bottom: 20px;
     left: 20px;
     color: white;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgb(0, 0, 0);
     padding: 10px 20px;
     border-radius: 5px;
 }
@@ -115,6 +121,7 @@ nav ul li a
     justify-content: space-between;
     gap: 20px;
     margin-bottom: 20px;
+
 }
 
 .description, .location {
@@ -123,6 +130,11 @@ nav ul li a
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* line-height: 2; */
+}
+.description p
+{
+    line-height : 1.5;
 }
 
 iframe {
@@ -150,13 +162,25 @@ details {
 .share-and-register {
     text-align: center;
     margin-top: 20px;
+    padding: 10px;
+    margin: 30px;
+
+
+}
+.share-and-register button {
+    margin-top: 20px;
 }
 
 .social-links {
     display: flex;
     justify-content: center;
     gap: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 30px;
+}
+.social-links img {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
 }
 
 .social-btn {
@@ -164,7 +188,7 @@ details {
     color: white;
     padding: 10px 20px;
     text-decoration: none;
-    border-radius: 5px;
+    border-radius: 25px;
 }
 
 .social-btn:hover {
@@ -172,11 +196,12 @@ details {
 }
 
 .register-btn {
+    
     background: #28a745;
     color: white;
     padding: 10px 20px;
     text-decoration: none;
-    border-radius: 5px;
+    border-radius: 25px;
 }
 
 .register-btn:hover {
@@ -244,7 +269,7 @@ details {
     <nav>
             <div class="logo">LOGO</div>
                 <ul>
-                    <li><a href="#">Home</a></li>
+                    <li><a href="studentdashboard.php">Home</a></li>
                     <li><a href="#">My Events</a></li>
                     <li><a href="studentprofilepage.php">profile</a></li>
                 </ul>
@@ -299,12 +324,17 @@ details {
             <section class="share-and-register">
                 <h2>Share with Friends</h2>
                 <div class="social-links">
-                    <a href="#" class="social-btn">Facebook</a>
+                    <!-- 
+                <a href="#" class="social-btn">Facebook</a>
                     <a href="#" class="social-btn">Twitter</a>
                     <a href="#" class="social-btn">LinkedIn</a>
+                 -->
+                   <img src="ICONS/facebook.svg" alt=""> 
+                   <img src="ICONS/linkedin.svg" alt="">
+                   <img src="ICONS/twitter.svg" alt="">
                 </div>
  
-    <a href="register_event.php?event_id=<?php echo $event_id; ?>" class="register-btn">Register Now</a>
+    <a href="studentregister.php?event_id=<?php echo $event_id; ?>" class="register-btn">Register Now</a>
 </section>
 
 

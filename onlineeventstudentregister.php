@@ -74,11 +74,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Event Registration</title>
     <style>
+        *
+        {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
         /* Basic styling */
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
             padding: 20px;
+            background-image: url('images/registerbackground.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+
         }
         .container {
             max-width: 600px;
@@ -87,6 +98,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            height: 100%;
         }
         h1 {
             text-align: center;
@@ -99,7 +111,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         input, textarea, button {
             width: 100%;
             padding: 10px;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             border: 1px solid #ccc;
             border-radius: 4px;
         }
@@ -114,6 +126,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </style>
 </head>
 <body>
+    <h1>Online Event Form Register</h1>
     <div class="container">
         <h1>Register for Event</h1>
         <form method="POST" action="" enctype="multipart/form-data">

@@ -201,7 +201,7 @@ if (!isset($_SESSION['user_phone'])) {
                 <p style="padding-top:10px;">University in Kolkata, West Bengal</p>
             </div>
             <div id="button-place">
-                <button>Calender</button>
+                <button><a href="academic_calenders/HOLIDAY-LIST-2024 uem-iem.pdf">Calender</a></button>
             </div>
         </div>
 
@@ -251,7 +251,7 @@ if (!isset($_SESSION['user_phone'])) {
         <p style="padding-top:10px;">University in Kolkata, West Bengal</p>
     </div>
     <div id="button-place">
-        <button>Calender</button>
+        <button><a href="academic_calenders/HOLIDAY-LIST-2024 uem-iem.pdf">Calender</a></button>
     </div>
 </div>
 

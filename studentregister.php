@@ -73,19 +73,50 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Event Registration</title>
     <style>
+        
         /* Basic styling */
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
             padding: 20px;
+            background: url('https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+           
         }
         .container {
             max-width: 600px;
-            margin: 0 auto;
+            display:flex;
+            margin: 0px auto;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            border-radius: 20px;
+            background-image: linear-gradient(to top left, #0b0b0bc8 10%,#00000073 90%);
+            backdrop-filter: blur(2px);
+            border: 1px solid gray;
+            color: white;
+            /*
+            
+           
+            height:100vh;    
+    
+    width: 100vw;
+    padding:30px 50px 50px;
+    background-color: #00000078;
+    
+    
+    
+    width: fit-content;
+    margin-left: 400px;
+    z-index: 1;  
             background-color: #fff;
             padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px; */
+            /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+           
         }
         h1 {
             text-align: center;
@@ -96,11 +127,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             margin-bottom: 5px;
         }
         input, textarea, button {
-            width: 100%;
+            width:450px;
             padding: 10px;
             margin-bottom: 15px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
+            border: none;
+            /* border-radius: 4px; */
+            background:transparent;
+            border-bottom: 1px solid #fff;
         }
         button {
             background-color: #28a745;
@@ -110,6 +143,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         button:hover {
             background-color: #218838;
         }
+        form
+        {
+            
+            width: 500px;
+            display: flex;
+            align-self:center;
+             justify-content: center; 
+            flex-direction: column;
+        }
+       
     </style>
 </head>
 <body>
@@ -117,7 +160,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="container">
         <h1>Register for Event</h1>
         <form method="POST" action="" enctype="multipart/form-data">
-            <label for="name">Full Name:</label>
+            <label for="name">Full Name: </label>
             <input type="text" id="name" name="name" required>
 
             <label for="email">Email Address:</label>

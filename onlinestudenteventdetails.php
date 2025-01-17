@@ -31,20 +31,64 @@ if (isset($_GET['event_id'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo htmlspecialchars($event['event_name']); ?> - Details</title>
     <style>
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Quicksand:wght@300..700&family=Space+Grotesk:wght@300..700&display=swap');
+</style>
+    <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: Quicksand;
             margin: 0;
             padding: 0;
             background-color: #f9f9f9;
         }
 
         .container {
-            width: 90%;
+            /* width: 90%; */
             margin: auto;
+            height: auto;
         }
+        nav
+{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    background:#000000;
+    z-index: 1;
+    /* font-family: poppins; */
+    padding: 5px;
+    color: #fff;
+  
+}
+.logo
+{
+    color: white;
+    font-size: 1.5rem;
+    margin-left: 1rem;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+}
+nav ul
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 1rem;
+}
+nav ul li 
+{
+    list-style: none;
+}
+nav ul li a
+{
+    color: white;
+    text-decoration: none;
+    padding:10px;
+    margin: 0 1rem;
+    transition: all 0.3s ease;
+}
 
         header {
-            background-color: #333;
+            background-color: black;
             color: #fff;
             padding: 10px 0;
             display: flex;
@@ -83,6 +127,7 @@ if (isset($_GET['event_id'])) {
             width: 100%;
             height: 400px;
             object-fit: cover;
+            
         }
 
         .event-banner .event-title {
@@ -90,7 +135,7 @@ if (isset($_GET['event_id'])) {
             bottom: 20px;
             left: 20px;
             color: white;
-            background-color: rgba(0, 0, 0, 0.5);
+            background-color: rgba(0, 0, 0, 0.97);
             padding: 10px 20px;
             border-radius: 5px;
         }
@@ -106,6 +151,7 @@ if (isset($_GET['event_id'])) {
             width: 48%;
             background: white;
             padding: 20px;
+            line-height: 1.6;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
@@ -116,7 +162,7 @@ if (isset($_GET['event_id'])) {
 
         .share-and-register {
             text-align: center;
-            margin-top: 20px;
+            height: 100px;
         }
 
         .register-btn {
@@ -125,6 +171,7 @@ if (isset($_GET['event_id'])) {
             padding: 10px 20px;
             text-decoration: none;
             border-radius: 5px;
+            margin: 10px;
         }
 
         .register-btn:hover {
@@ -133,17 +180,19 @@ if (isset($_GET['event_id'])) {
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <div class="logo">LOGO</div>
+<!-- <header>
+            <div class="logo">LOGO</div> -->
             <nav>
+            <div class="logo">LOGO</div>
                 <ul>
                     <li><a href="#">Home</a></li>
-                    <li><a href="#">Help Center</a></li>
-                    <li><a href="studentprofilepage.php">Profile</a></li>
+                    <li><a href="myevents.php">My Events</a></li>
+                    <li><a href="studentprofilepage.php">profile</a></li>
                 </ul>
             </nav>
-        </header>
+        <!-- </header> -->
+    <div class="container">
+       
 
         <main>
             <section class="event-banner">

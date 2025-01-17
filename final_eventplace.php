@@ -77,13 +77,13 @@
 session_start();
 
 // Prevent caching
-header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
-header("Cache-Control: post-check=0, pre-check=0", false);
-header("Pragma: no-cache");
+// header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+// header("Cache-Control: post-check=0, pre-check=0", false);
+// header("Pragma: no-cache");
 
 // Check if user is logged in (example: check if phone number is set in session)
 if (!isset($_SESSION['user_phone'])) {
-    echo "<script>alert('Please log in to continue.'); window.location.href = 'login.html';</script>";
+    echo "<script>alert('Please log in to continue.'); window.location.href = 'dashboard.php';</script>";
     exit; // Stop script execution if user is not logged in
 }
 
@@ -141,8 +141,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submitOffline'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Event Place and Nearby Auditoriums</title>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBd8sivy34CZJ9XExBosK2OC5kyXUvxQA8&libraries=places&callback=initMap" async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBZpLZ-XlbYLISkYWUHCWpT0nJKpc33Nts&libraries=places&callback=initMap" async defer></script>
     <style>
+
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Quicksand:wght@300..700&family=Space+Grotesk:wght@300..700&display=swap');
+
         *
         {
             margin: 0;

@@ -1,13 +1,13 @@
 <?php
 session_start(); // Start the session
 // Prevent caching
-header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
-header("Cache-Control: post-check=0, pre-check=0", false);
-header("Pragma: no-cache");
+// header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+// header("Cache-Control: post-check=0, pre-check=0", false);
+// header("Pragma: no-cache");
 
 // Check if user is logged in (example: check if phone number is set in session)
 if (!isset($_SESSION['user_phone'])) {
-    echo "<script>alert('Please log in to continue.'); window.location.href = 'login.html';</script>";
+    echo "<script>alert('Please log in to continue.'); window.location.href = 'login1.html';</script>";
     exit; // Stop script execution if user is not logged in
 }
 
