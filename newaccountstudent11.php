@@ -16,7 +16,7 @@
             echo 
             "<script>
                     alert('Account created successfully');
-                    window.location.href = 'studentlogin.php';
+                    window.location.href = 'studentlogin1.php';
                   </script>";
             
         }

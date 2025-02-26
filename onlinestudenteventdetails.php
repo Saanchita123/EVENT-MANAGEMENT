@@ -167,11 +167,10 @@ nav ul li a
 
         .register-btn {
             background: #28a745;
-            color: white;
-            padding: 10px 20px;
-            text-decoration: none;
-            border-radius: 5px;
-            margin: 10px;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 25px;
         }
 
         .register-btn:hover {
@@ -217,7 +216,7 @@ nav ul li a
             </section>
 
             <section class="share-and-register">
-                <a href="onlineeventstudentregister.php?event_id=<?php echo $event_id; ?>" class="register-btn">Register Now</a>
+                <a href="onlineeventstudentregisternew.php?event_id=<?php echo $event_id; ?>" class="register-btn">Register Now</a>
             </section>
         </main>
     </div>

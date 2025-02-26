@@ -62,7 +62,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submitEventPlace'])) 
     $conn->close();
 
     // Clear session data after submission
-    session_unset();
-    session_destroy();
+    // the session should not be cleared . as it removed the information of the logged in user...
+    // session_unset();
+    // session_destroy();
 }
 ?>

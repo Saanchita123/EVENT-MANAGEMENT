@@ -241,19 +241,19 @@ if (!isset($_SESSION['user_phone'])) {
 
  <!-- college 6 -->
 
- <div id="college3" class="college">
+ <!-- <div id="college3" class="college">
     <div id="img1" class="image-div">
         <img src="images/bgimg1.jpg" alt="">
-    </div>
+    </div> -->
 
-    <div class="details">
+    <!-- <div class="details">
         <h2>University of Engineering and Management</h2>
         <p style="padding-top:10px;">University in Kolkata, West Bengal</p>
     </div>
     <div id="button-place">
         <button><a href="academic_calenders/HOLIDAY-LIST-2024 uem-iem.pdf">Calender</a></button>
     </div>
-</div>
+</div> -->
 
 </div>
 

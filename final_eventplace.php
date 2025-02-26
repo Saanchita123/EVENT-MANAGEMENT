@@ -431,104 +431,201 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submitOffline'])) {
     </div>
     <script src="script.js"></script>
     <script>
-        let map;
-        let service;
-        let autocomplete;
+        // let map;
+        // let service;
+        // let autocomplete;
+
+        // function initMap() {
+        //     const defaultLocation = { lat: 22.5726, lng: 88.3639 }; // Kolkata coordinates
+        //     map = new google.maps.Map(document.getElementById("map"), {
+        //         center: defaultLocation,
+        //         zoom: 14,
+        //     });
+
+        //     // Initialize autocomplete
+        //     autocomplete = new google.maps.places.Autocomplete(document.getElementById("locationInput"));
+        //     autocomplete.bindTo("bounds", map); // Bias results towards the map's viewport
+
+        //     service = new google.maps.places.PlacesService(map);
+
+        //     // Add listener for place selection from autocomplete
+        //     autocomplete.addListener('place_changed', searchNearby);
+        // }
+
+        // function searchNearby() {
+        //     const place = autocomplete.getPlace();
+
+        //     if (!place.geometry || !place.geometry.location) {
+        //         alert("Please select a valid location from the autocomplete suggestions.");
+        //         return;
+        //     }
+
+        //     const location = place.geometry.location;
+        //     map.setCenter(location);
+
+        //     const request = {
+        //         location: location,
+        //         radius: '5000', // Search within 5 km radius
+        //         keyword: 'auditorium', // Searching specifically for auditoriums
+        //         type: ['point_of_interest'], // General points of interest (can help include auditoriums)
+        //     };
+
+        //     service.nearbySearch(request, function (results, status) {
+        //         const auditoriumNames = document.getElementById("auditoriumNames");
+        //         auditoriumNames.innerHTML = ''; // Clear previous results
+
+        //         if (status === google.maps.places.PlacesServiceStatus.OK) {
+        //             for (let i = 0; i < results.length; i++) {
+        //                 const li = document.createElement('li');
+        //                 const place = results[i];
+
+        //                 // Create a div to hold the image and name
+        //                 const placeContainer = document.createElement('div');
+        //                 placeContainer.style.display = 'flex';
+        //                 placeContainer.style.alignItems = 'center';
+
+        //                 // Add place image if available
+        //                 if (place.photos && place.photos.length > 0) {
+        //                     const placeImage = document.createElement('img');
+        //                     placeImage.src = place.photos[0].getUrl({ maxWidth: 40, maxHeight: 40 });
+        //                     placeImage.alt = place.name;
+        //                     placeImage.style.width = '40px';
+        //                     placeImage.style.height = '40px';
+        //                     placeImage.style.marginRight = '10px';
+        //                     placeContainer.appendChild(placeImage);
+        //                 }
+
+        //                 // Add place name
+        //                 const placeName = document.createElement('span');
+        //                 placeName.textContent = place.name;
+        //                 placeContainer.appendChild(placeName);
+
+        //                 // Add the container to the list item
+        //                 li.appendChild(placeContainer);
+        //                 auditoriumNames.appendChild(li);
+
+        //                 createMarker(results[i]);
+        //             }
+        //         } else {
+        //             auditoriumNames.innerHTML = '<li>No auditoriums found.</li>';
+        //         }
+        //     });
+        // }
+
+        // function createMarker(place) {
+        //     const marker = new google.maps.Marker({
+        //         map: map,
+        //         position: place.geometry.location,
+        //     });
+
+        //     google.maps.event.addListener(marker, "click", function () {
+        //         const infoWindow = new google.maps.InfoWindow({
+        //             content: place.name,
+        //         });
+        //         infoWindow.open(map, marker);
+        //     });
+        // }
+
+        // // Initialize the map when the window loads
+        // window.onload = initMap;
+        // // ------------------
+
+        let map, service, autocomplete, markers = [];
 
         function initMap() {
-            const defaultLocation = { lat: 22.5726, lng: 88.3639 }; // Kolkata coordinates
+            const defaultLocation = { lat: 22.5726, lng: 88.3639 }; // Kolkata
             map = new google.maps.Map(document.getElementById("map"), {
                 center: defaultLocation,
                 zoom: 14,
             });
 
-            // Initialize autocomplete
             autocomplete = new google.maps.places.Autocomplete(document.getElementById("locationInput"));
-            autocomplete.bindTo("bounds", map); // Bias results towards the map's viewport
-
+            autocomplete.bindTo("bounds", map);
             service = new google.maps.places.PlacesService(map);
 
-            // Add listener for place selection from autocomplete
-            autocomplete.addListener('place_changed', searchNearby);
+            autocomplete.addListener('place_changed', function() {
+                searchNearby(autocomplete.getPlace());
+            });
         }
 
-        function searchNearby() {
+        function triggerSearch() {
             const place = autocomplete.getPlace();
-
-            if (!place.geometry || !place.geometry.location) {
-                alert("Please select a valid location from the autocomplete suggestions.");
+            if (!place || !place.geometry) {
+                alert("Please select a valid location from the suggestions.");
                 return;
             }
+            searchNearby(place);
+        }
 
-            const location = place.geometry.location;
-            map.setCenter(location);
+        function searchNearby(place) {
+            if (!place.geometry || !place.geometry.location) return;
+
+            map.setCenter(place.geometry.location);
+            map.setZoom(14);
+            clearMarkers();
 
             const request = {
-                location: location,
-                radius: '5000', // Search within 5 km radius
-                keyword: 'auditorium', // Searching specifically for auditoriums
-                type: ['point_of_interest'], // General points of interest (can help include auditoriums)
+                location: place.geometry.location,
+                radius: '5000',
+                keyword: 'auditorium',
             };
 
             service.nearbySearch(request, function (results, status) {
-                const auditoriumNames = document.getElementById("auditoriumNames");
-                auditoriumNames.innerHTML = ''; // Clear previous results
+                const auditoriumList = document.getElementById("auditoriumNames");
+                auditoriumList.innerHTML = '';
 
                 if (status === google.maps.places.PlacesServiceStatus.OK) {
-                    for (let i = 0; i < results.length; i++) {
-                        const li = document.createElement('li');
-                        const place = results[i];
-
-                        // Create a div to hold the image and name
-                        const placeContainer = document.createElement('div');
-                        placeContainer.style.display = 'flex';
-                        placeContainer.style.alignItems = 'center';
-
-                        // Add place image if available
-                        if (place.photos && place.photos.length > 0) {
-                            const placeImage = document.createElement('img');
-                            placeImage.src = place.photos[0].getUrl({ maxWidth: 40, maxHeight: 40 });
-                            placeImage.alt = place.name;
-                            placeImage.style.width = '40px';
-                            placeImage.style.height = '40px';
-                            placeImage.style.marginRight = '10px';
-                            placeContainer.appendChild(placeImage);
-                        }
-
-                        // Add place name
-                        const placeName = document.createElement('span');
-                        placeName.textContent = place.name;
-                        placeContainer.appendChild(placeName);
-
-                        // Add the container to the list item
-                        li.appendChild(placeContainer);
-                        auditoriumNames.appendChild(li);
-
-                        createMarker(results[i]);
-                    }
+                    results.forEach((auditorium, index) => {
+                        addListItem(auditorium, index);
+                        createMarker(auditorium, index);
+                    });
                 } else {
-                    auditoriumNames.innerHTML = '<li>No auditoriums found.</li>';
+                    auditoriumList.innerHTML = '<li>No auditoriums found.</li>';
                 }
             });
         }
 
-        function createMarker(place) {
+        function addListItem(auditorium, index) {
+            const li = document.createElement('li');
+            li.innerHTML = `
+                ${auditorium.photos ? '<img src="' + auditorium.photos[0].getUrl({ maxWidth: 40, maxHeight: 40 }) + '" alt="' + auditorium.name + '">' : ''}
+                <span>${auditorium.name}</span>
+            `;
+
+            li.onclick = () => {
+                google.maps.event.trigger(markers[index], "click");
+                map.setCenter(markers[index].getPosition());
+                map.setZoom(15);
+            };
+
+            document.getElementById("auditoriumNames").appendChild(li);
+        }
+
+
+        function createMarker(place, index) {
             const marker = new google.maps.Marker({
                 map: map,
                 position: place.geometry.location,
+                title: place.name
             });
 
-            google.maps.event.addListener(marker, "click", function () {
-                const infoWindow = new google.maps.InfoWindow({
-                    content: place.name,
-                });
+            const infoWindow = new google.maps.InfoWindow({
+                content: '<strong>' + place.name + '</strong><br>' + place.vicinity
+            });
+
+            marker.addListener('click', function () {
                 infoWindow.open(map, marker);
             });
+
+            markers[index] = marker;
         }
 
-        // Initialize the map when the window loads
+        function clearMarkers() {
+            markers.forEach(marker => marker.setMap(null));
+            markers = [];
+        }
+
         window.onload = initMap;
-        // ------------------
 
       
     </script>

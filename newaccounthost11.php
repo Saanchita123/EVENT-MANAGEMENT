@@ -9,7 +9,23 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
     $password = $_POST['password'];
     $confirmpassword = $_POST['confirmpassword'];
 
-if($password == $confirmpassword)
+
+    //  to check if phone number already exist
+     $checkQuery = "SELECT * FROM `users` WHERE `phone` = '$phone'";
+     $checkResult = mysqli_query($conn, $checkQuery);
+ 
+     if (mysqli_num_rows($checkResult) > 0) {
+        
+         echo "<script>
+             alert('Account with this phone number already exists.');
+             window.location.href = 'hostlogin1.php';
+         </script>";
+        }
+
+        
+else
+{
+    if($password == $confirmpassword)
 {
     $sql = "INSERT INTO `users` (`firstname`, `lastname`, `phone`, `email`, `password`) VALUES ('$firstname', '$lastname', '$phone', '$email', '$password')";
     $result = mysqli_query($conn, $sql);
@@ -21,6 +37,7 @@ if($password == $confirmpassword)
     {
         echo "Account not created";
     }
+}
 }
 }
 ?>

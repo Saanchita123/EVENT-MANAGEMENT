@@ -6,8 +6,6 @@ session_start();
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $fullName = $_POST['name'];
     $password = $_POST['password'];
-
-    // SQL query to check if the user exists in the database
     $sql = "SELECT password, phone FROM `users` WHERE CONCAT(firstname, ' ', lastname) = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("s", $fullName);
@@ -16,13 +14,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if ($result->num_rows == 1) {
         $row = $result->fetch_assoc();
-
-        // Directly compare for plain text password
         if ($password == $row['password']) {
             $_SESSION['username'] = $fullName;
-            $_SESSION['user_phone'] = $row['phone']; // Store phone number in session
-
-            // JavaScript to set localStorage and redirect
+            $_SESSION['user_phone'] = $row['phone'];
             echo "<script>
                     localStorage.setItem('name', '" . addslashes($fullName) . "');
                     window.location.href = 'dashboard.php';
@@ -36,9 +30,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 }
 ?>
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -50,8 +41,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
      * {
             margin: 0;
             padding: 0;
-          
-           
         }
         body {
           font-family: sans-serif;
@@ -104,11 +93,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     height: 100vh;
    
 }
- 
-
         #form-container form {
             width: 100%;
-            
 }
 h1
 {

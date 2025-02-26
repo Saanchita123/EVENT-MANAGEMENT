@@ -334,7 +334,7 @@ details {
                    <img src="ICONS/twitter.svg" alt="">
                 </div>
  
-    <a href="studentregister.php?event_id=<?php echo $event_id; ?>" class="register-btn">Register Now</a>
+    <a href="studentregisternew.php?event_id=<?php echo $event_id; ?>" class="register-btn">Register Now</a>
 </section>
 
 
